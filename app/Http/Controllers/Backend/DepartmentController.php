@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CityStoreRequest;
+use App\Http\Requests\DepartmentStoreRequest;
+use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Models\City;
-use App\Models\State;
 
-class CityController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +16,13 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        $cities = City::all();
+        $departments = Department::all();
 
-        if($request->has('search'))
-        {
-            $cities = City::where('name', 'like', "%{$request->search}%")->get();
+        if($request->has('search')){
+            $departments = Department::where('name', 'like', "%{$request->search}%")->get();
         }
 
-        return view('cities.index', compact('cities'));
+        return view('departments.index', compact('departments'));
     }
 
     /**
@@ -34,8 +32,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        $states = State::all();
-        return view('cities.create', compact('states'));
+        return view('departments.create');
     }
 
     /**
@@ -44,10 +41,11 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CityStoreRequest $request)
+    public function store(DepartmentStoreRequest $request)
     {
-        City::create($request->validated());
-        return redirect()->route('cities.index')->with('message', 'City Successfully Created');
+        Department::create($request->validated()); 
+
+        return redirect()->route('departments.index')->with('message', 'Department Created Successfully');
     }
 
     /**
@@ -56,7 +54,7 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -67,10 +65,9 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit(Department $department)
     {
-        $states = State::all();
-        return view('cities.edit', compact('city', 'states'));
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -80,13 +77,13 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CityStoreRequest $request, City $city)
+    public function update(DepartmentStoreRequest $request, Department $department)
     {
-        $city->update([
-            'state_id' => $request->state_id,
-            'name' => $request->name
+        $department->update([
+            'name' => $request->name,
         ]);
-        return redirect()->route('cities.index')->with('message', 'City Updated Successfully');
+
+        return redirect()->route('departments.index')->with('Message','Department Updated Successfully');
     }
 
     /**
@@ -95,11 +92,10 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(Department $department)
     {
-        $city->delete();
+        $department->delete();
 
-        return redirect()->route('cities.index')->with('message', 'City Deleted Successfully');
-
+        return redirect()->route('departments.index')->with('message', 'Department Deleted Successfully');
     }
 }

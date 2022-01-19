@@ -21,7 +21,7 @@
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
-                            <label for="state_id" class="col-md-4 col-form-label text-md-end">{{ __('Code') }}</label>
+                            <label for="state_id" class="col-md-4 col-form-label text-md-end">{{ __('State') }}</label>
 
                             <div class="col-md-6">
                                 <select name="state_id" class="form-control" aria-label="Default select example">
@@ -32,7 +32,7 @@
                                 </select>
                              
 
-                                @error('country_id')
+                                @error('state_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

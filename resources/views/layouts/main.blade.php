@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Employee</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -41,7 +41,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/employees">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Employee Management</span></a>
             </li>
@@ -60,7 +60,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('countries.index') }}">Country</a>
                         <a class="collapse-item" href="{{ route('states.index') }}">State</a>
-                        <a class="collapse-item" href="cards.html">Department</a>
+                        <a class="collapse-item" href="{{ route('departments.index') }}">Department</a>
                         <a class="collapse-item" href="{{ route('cities.index') }}">City</a>
                     </div>
                 </div>
